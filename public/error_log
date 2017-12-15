@@ -1,0 +1,3 @@
+[14-Dec-2017 01:01:42 UTC] PHP Fatal error:  Trait 'App\Http\Controllers\Auth' not found in /home/lowyiyiu/public_html/laravel/app/Http/Controllers/LoginController.php on line 13
+[14-Dec-2017 01:04:40 UTC] PHP Fatal error:  Trait 'App\Http\Controllers\App\Http\Controllers\Auth' not found in /home/lowyiyiu/public_html/laravel/app/Http/Controllers/LoginController.php on line 13
+[14-Dec-2017 01:08:46 UTC] PHP Fatal error:  Cannot use AuthenticatesUsers as AuthenticatesUsers because the name is already in use in /home/lowyiyiu/public_html/laravel/app/Http/Controllers/LoginController.php on line 11
