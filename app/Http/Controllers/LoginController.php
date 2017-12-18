@@ -2,44 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Model\UserRole;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
-use \Auth;
+use Illuminate\Http\Request;
 
-class LoginController extends Controller {
+class LoginController extends Controller
+{
     use AuthenticatesUsers;
     protected $redirectTo = '/home';
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->middleware('guest')->except('logout');
     }
-    
-    public function showLogin() {
-        return view('login');
-    }
-    
-    public function doLogin() {
-        $rules = array(
-            'email'    => 'required|email',
-            'password' => 'required|alphaNum|min:6'
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails()) {
-            return Redirect::to('login')
-                ->withErrors($validator);
-            } else {
-                $userdata = array(
-                    'email'     => Input::get('email'),
-                    'password'  => Input::get('password')
-                );
-            
-            if (Auth::attempt($userdata)) {
-                echo 'SUCCESS!';
-            } else {
-                return Redirect::to('login');
-            }
-        }
-    }
+
+//    public function showLogin()
+//    {
+//        return view('login');
+//    }
+
+//    public function doLogin(Request $request)
+//    {
+//        $rules = array(
+//            'email'     => 'required|email',
+//            'password' => 'required|alphaNum|min:6'
+//        );
+//        $this->validate($request, $rules);
+//
+//        if ( ! Auth::attempt($request->only(['email', 'password']))) {
+//            $request->session()->flash('error', 'Password doesn\'t match.');
+//
+//            return back()->withInput();
+//        }
+//
+//        return redirect('home');
+//
+//    }
 }

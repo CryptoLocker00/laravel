@@ -14,9 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('login', array('uses' => 'LoginController@showLogin'));
-Route::post('login', array('uses' => 'LoginController@doLogin'));
-Route::get('/logout', function () {
-    Auth::logout();
-    return view('welcome');
-});
+//Route::get('login', array('uses' => 'LoginController@showLogin'));
+//Route::post('login', array('uses' => 'LoginController@doLogin'))->name('user.login');
+//Route::get('/logout', function () {
+//    Auth::logout();
+//    return view('welcome');
+//})->name('logout');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('users', 'UserController@index');

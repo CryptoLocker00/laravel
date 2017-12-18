@@ -10,7 +10,7 @@ class CreateUserRoleTable extends Migration
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'USER_ROLE';
+    public $set_schema_table = 'user_role';
 
     /**
      * Run the migrations.
@@ -23,16 +23,12 @@ class CreateUserRoleTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('user_id');
+            $table->increments('id');
+            $table->integer('user_id');
             $table->integer('role_id');
 
-            $table->index(["role_id"], 'role_id_idx');
-
-
-            $table->foreign('role_id', 'role_id_idx')
-                ->references('role_id')->on('ROLES')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

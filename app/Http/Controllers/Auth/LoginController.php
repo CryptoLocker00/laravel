@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Model\UserRole;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,8 +38,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
-    public function showLogin() {
+
+    protected function authenticated(Request $request, $user)
+    {
+        $userRole = UserRole::where('user_id', $user->id)->first();
+        if ($userRole->role_id === 2) {
+            $this->redirectTo = '';
+        } else {
+            $this->redirectTo = '';
+        }
+    }
+
+    public function showLogin()
+    {
         return view('login');
     }
 }

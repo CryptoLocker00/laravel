@@ -10,7 +10,7 @@ class CreateRolesTable extends Migration
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'ROLES';
+    public $set_schema_table = 'roles';
 
     /**
      * Run the migrations.
@@ -23,8 +23,8 @@ class CreateRolesTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('role_id');
-            $table->string('role_name', 45);
+            $table->increments('id');
+            $table->string('name');
         });
     }
 
